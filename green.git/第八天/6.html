@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>函数</title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+	//	函数
+	// function XiongTian(){
+	// 	console.log('求包养，会暖床');
+	// }
+	// XiongTian()
+	//	千余婕
+	// var qianqian = function(){
+	// 	console.log('声音甜美，没有喉结，我有一个大胆的想法');
+	// }
+	// qianqian();
+
+	// JS函数本质
+	// var wufan = 123
+	// var wufan = function(){
+	// 	console.log('午饭吃什么');
+	// }
+	// function wufan(){
+	// 	console.log('午饭吃什么');
+	// }
+	// console.log(wufan);
+	//	提高代码的复用性和可维护性
+	// function jsq(a,b,ysf){
+	// 	if(ysf == '+'){
+	// 		console.log(a+b);// 特别复杂的运算
+	// 	}else if(ysf == '-'){
+	// 		console.log(a-b);
+	// 	}
+	// }
+	// jsq(5,5,'+')
+
+	//	计算器函数有三个功能，判断，加法，减法
+	function jsq(a,b,ysf){
+		ysf(a,b)// 函数回调，就是把整个函数当做参数穿进去使用
+	}
+	function add(a,b){
+		console.log(a+b);
+	}
+	function reduce(a,b){
+		console.log(a-b);
+	}
+	jsq(5,5,add);
+</script>

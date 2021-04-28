@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>轮播图</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding:0px;
+			list-style: none;
+		}
+		img,li{
+			width:400px;
+			height:250px;
+		}
+		.swiper-wrap{
+			position:relative;
+		}
+		.swiper-item{
+			position:absolute;
+			left:0px;
+			top:0px;
+			display:none;
+		}
+		.swiper-item h2{
+			position:absolute;
+			left:0px;
+			bottom:0px;
+			color:white;
+		}
+	</style>
+</head>
+<body>
+	<div id="swiper">
+		<ul class="swiper-wrap">
+			<li style="display:block" class="swiper-item">
+				<img src="./img/1.jpg">
+				<h2>阿凡达</h2>
+			</li>
+			<li class="swiper-item">
+				<img src="./img/2.jpg">
+				<h2>唐人街探案3</h2>
+			</li>
+			<li class="swiper-item">
+				<img src="./img/3.jpg">
+				<h2>猫和老鼠</h2>
+			</li>
+			<li class="swiper-item">
+				<img src="./img/4.jpg">
+				<h2>你的姐姐</h2>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	//	如果要用js控制页面上的标签
+	//  首先需要获取
+	// 通过class名称，获取页面上的标签
+	var items = document.getElementsByClassName('swiper-item')
+	console.log(items);
+	//	显示第一张图片
+	//  items[0].style.display = 'block';
+
+	//	声明一个初始化变量，用来控制显示第几章图片
+	var i = 0;
+
+	//	每隔一段时间，显示下一张图片，隐藏剩下的图片
+	function play(){
+		i++;
+		if(i == 4){
+			i = 0
+		}
+		//	先隐藏所有图片，然后显示下一张图片
+		// items[1].style.display = 'none';
+		// items[0].style.display = 'none';
+		// items[2].style.display = 'none';
+		// items[3].style.display = 'none';
+		for(y = 0; y < 4; y++){
+			items[y].style.display = 'none'
+		}
+		items[i].style.display = 'block'
+	}
+	setInterval(function(){
+		play()
+	},1000)
+
+</script>

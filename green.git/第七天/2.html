@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>swiper</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding:0px;
+			list-style: none;
+		}
+		.swiper-item,.swiper-item img{
+			width:400px;
+			height:300px;
+		}
+		#swiper-wrap{
+			width:1600px;
+			height:300px;
+			position:absolute;
+			left:0px;
+			top:0px;
+			animation:lunbo 10s ease 0s infinite normal;
+		}
+		@keyframes lunbo{
+			0%{
+				left:0px;
+			}
+			33%{
+				left:-400px;
+			}
+			66%{
+				left:-800px;
+			}
+			100%{
+				left:-1200px;
+			}
+		}
+		#swiper{
+			width:400px;
+			height:300px;
+			border:5px solid red;
+			margin:100px auto;
+			position:relative;
+			overflow:hidden;
+		}
+
+		.swiper-item{
+			float:left;
+		}
+	</style>
+</head>
+<body>
+	<div id="swiper">
+		<ul id="swiper-wrap">
+			<li class="swiper-item">
+				<a href="#">
+					<img src="1.jpg">
+				</a>
+			</li>
+			<li class="swiper-item">
+				<a href="#">
+					<img src="2.jpg">
+				</a>
+			</li>
+			<li class="swiper-item">
+				<a href="#">
+					<img src="3.jpg">
+				</a>
+			</li>
+			<li class="swiper-item">
+				<a href="#">
+					<img src="1.jpg">
+				</a>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

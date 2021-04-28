@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>菜谱</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	请输入你要搜索的关键字:
+	<input type="text" id="search" name="">
+	<button id="btn" type="btn">开始搜索</button>
+	<h1 id="title"></h1>
+	<p id="jianjie"></p>
+	<img id="pic" />
+	<div id="cailiao"></div>
+	<div id="buzhou"></div>
+</body>
+</html>
+<script type="text/javascript">
+	/*
+		1. 请求方式，get
+
+		2. 请求地址 http://localhost:3000/
+
+		3. 添加参数  keyword = 关键字
+
+			需要在url请求地址后用?然后name=value
+
+	*/
+	btn.onclick = function(){
+		var xhr = new XMLHttpRequest();
+
+		xhr.open('GET','http://localhost:3000/?keyword=' + search.value);
+
+		xhr.send();
+
+		xhr.onreadystatechange = function(){
+
+			if(xhr.readyState == 4){
+				var obj =  JSON.parse(xhr.responseText);
+				var msg = JSON.parse(obj.body);
+				console.log(msg.result.list[0].process);
+				//	一般情况下，如果console.log出来是个字符串，那么需要吧字符串转化为json对象
+				title.innerHTML = msg.result.list[0].name;
+				jianjie.innerHTML = msg.result.list[0].content;
+				pic.src = msg.result.list[0].pic;
+				var str = '';
+				for(i = 0; i < msg.result.list[0].material.length ; i++){
+					str = str + msg.result.list[0].material[i].mname + ':' +msg.result.list[0].material[i].amount + '<br />';
+
+				}
+				cailiao.innerHTML = str;
+
+				var str2 = '';
+
+				for(y=0;y<msg.result.list[0].process.length;y++){
+					str2 = str2 + '<p>'+ msg.result.list[0].process[y].pcontent + '</p>' +   '<img src="' + msg.result.list[0].process[y].pic + '" />';
+					
+				}
+				buzhou.innerHTML = str2
+
+			}
+		}
+	}
+</script>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>电子表</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#biao{
+			width:600px;
+			height:200px;
+			margin:50px auto;
+			border:1px solid skyblue;
+			font-size:40px;
+			color:skyblue;
+			line-height: 200px;
+			text-align:center;
+		}
+	</style>
+</head>
+<body>
+	<div id="biao"></div>
+</body>
+</html>
+<script type="text/javascript">
+	function getTimes(){
+		//	实例化时间对象
+		var time = new Date();
+		var year = time.getFullYear();
+		var month = time.getMonth() + 1;
+		var date = time.getDate();
+		var hour = time.getHours();
+		var minute = time.getMinutes();
+		var second = time.getSeconds();
+		var day = time.getDay();
+		var str = year + '年' + month + '月' + date + '日 ' +  hour + ':' + minute + ':' + second + ' 星期' + day;
+
+		//	显示在div中
+		biao.innerHTML = str
+	}
+	getTimes()
+	setInterval(getTimes,1000)
+</script>

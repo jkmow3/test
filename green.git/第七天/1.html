@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>动画属性</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#ball{
+			width:100px;
+			height:100px;
+			background:-webkit-linear-gradient(left,red,blue,yellow);
+			border-radius:50%;
+			position:absolute;
+			left:0px;
+			top:0px;
+
+			animation-name:qiu;
+			animation-duration:5s;
+			animation-timing-function:linear;
+			animation-delay:0s;
+			animation-iteration-count:infinite;
+			animation-direction:normal;
+		}
+		/*动画属性*/
+		/*声明一个动画*/
+		@keyframes qiu{
+			0%{
+				border-radius:50%;
+				left:800px;
+				top:400px;
+			}
+			10%{
+				border-radius:0;
+				left:0px;
+				top:0px;
+			}
+			20%{
+				left:800px;
+				top:200px;
+			}
+			50%{
+				left:0px;
+				top:400px;
+			}
+			100%{
+				border-radius:50%;
+			}
+		}
+
+	</style>
+</head>
+<body>
+	<div id="ball"></div>
+</body>
+</html>

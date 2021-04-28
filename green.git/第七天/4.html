@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>弹性盒子</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding:0px;
+			list-style: none;
+		}
+		li{
+			width:150px;
+			height:40px;
+			background:gray;
+			border-radius:8px;
+			text-align:center;
+			line-height: 40px;
+			color:white;
+			margin:10px;
+		}
+		ul{
+			border:1px solid black;
+		}
+		.direction{
+			display:flex;
+			flex-direction:row;
+		}
+		.wrap{
+			display:flex;
+			flex-wrap:wrap;
+		}
+		.xiaochi{
+			display:flex;
+			justify-content: space-between;
+		}
+		.align{
+			display:flex;
+			align-items: baseline;
+		}
+	</style>
+</head>
+<body>
+	<ul class="align">
+		<li style="height:150px">中超</li>
+		<li style="height:50px">亚冠</li>
+		<li style="height:100px">欧冠</li>
+		<li style="height:250px">F1直播</li>
+	</ul>
+	<!-- <ul class="direction">
+		<li>阿凡达</li>
+		<li>明天会好的</li>
+		<li>真·三国无双</li>
+	</ul> -->
+<!-- 	<ul class="wrap">
+		<li>这个人仙太过正经</li>
+		<li>突然成仙了怎么办</li>
+		<li>从红月开始</li>
+		<li>赘婿</li>
+		<li>圣墟</li>
+		<li>斗罗大陆</li>
+		<li>我真没想当渣男</li>
+		<li>金刚不坏大寨主</li>
+	</ul>
+	<ul class="xiaochi">
+		<li>热干面</li>
+		<li>老通城豆皮</li>
+		<li>武汉鸭脖</li>
+		<li>什锦豆腐脑</li>
+	</ul> -->
+</body>
+</html>

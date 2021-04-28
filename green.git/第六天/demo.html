@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>导航栏+banner图</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding:0px;
+			list-style: none;
+		}
+		img{
+			width:200px;
+		}
+		li{
+			background:skyblue;
+			width:100px;
+			height:50px;
+			border:1px solid white;
+			float:left;
+		}
+		ul{
+			/*border:2px solid black;*/
+			/*1. 保证浮动元素的父级元素，宽高一切正常*/
+			/*height:52px;*/
+		}
+		.clear{
+			clear:both;
+		}
+		ul:after{
+			content:"";
+			background:red;
+			display:block;
+			height:0px;
+			clear:both;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>学校官网</li>
+		<li>合作洽谈</li>
+		<li>海外学子</li>
+		<li>志愿申报</li>
+	</ul>
+	<ul>
+		<li>课外活动</li>
+		<li>游泳健身</li>
+		<li>网吧过年</li>
+		<li>钓鱼毁一生</li>
+	</ul>
+	<img src="2.jpg">
+</body>
+</html>

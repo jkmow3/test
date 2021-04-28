@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>简单的事件触发</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<button type="button" id="btn">点击信息</button>
+	<button type="button" id="double">双击666</button>
+	<button type="button" id="mouseover">鼠标移入</button>
+	<button type="button" id="mousemove">鼠标移动</button>
+	<button type="button" id="mouveleave">点击信息</button>
+</body>
+</html>
+<script type="text/javascript">
+	//	点击页面上的任何元素，做出js反馈，这叫做事件
+	//	js和页面标签交互，都需要获取元素
+	//	id的元素可以省略获取步骤
+	var btn = document.getElementById('btn');
+	//	给按钮点击事件
+	btn.onclick = function(){
+		alert('今天，熊恬老师去找他同学玩了，我被抛弃了');
+	}
+	double.ondblclick = function(){
+		alert('双击 事件');
+	}
+	mouseover.onmouseover= function(){
+		alert('鼠标移入');
+	}
+	mousemove.onmousemove = function(){
+		alert('鼠标移动了');
+	}
+	mouveleave.onmouseleave = function(){
+		alert('鼠标移除');
+	}
+</script>

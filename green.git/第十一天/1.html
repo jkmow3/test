@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>菜谱</title>
+	<meta charset="utf-8">
+	<!-- 引入jquery -->
+	<script src="js/jquery.js"></script>
+</head>
+<body>
+	请输入你要搜索的关键字:
+	<input type="text" id="search" name="">
+	<button id="btn" type="btn">开始搜索</button>
+	<h1 id="title"></h1>
+	<p id="jianjie"></p>
+	<img id="pic" />
+	<div id="cailiao"></div>
+	<div id="buzhou"></div>
+</body>
+</html>
+<script type="text/javascript">
+	/*
+		1. 请求方式，get
+
+		2. 请求地址 http://localhost:3000/
+
+		3. 添加参数  keyword = 关键字
+
+			需要在url请求地址后用?然后name=value
+
+	*/
+	btn.onclick = function(){
+		$.ajax({
+			// 请求地址
+			url:'http://localhost:3000/?keyword=' + search.value ,
+			// 请求方式type
+			type:'get',
+			// 请求成功之后怎么做
+			success:function(res){
+				console.log(JSON.parse(res.body));
+			}
+		})
+	}
+</script>

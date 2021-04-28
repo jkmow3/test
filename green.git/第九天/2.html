@@ -1,0 +1,35 @@
+<script type="text/javascript">
+	function count(number){
+		console.log(number);
+		if(number > 0){
+			// 递归
+			count(number -1)
+		}else{
+			console.log('---------');
+		}
+		console.log(number);
+	}
+
+	count(1)
+----
+		console.log(1); //   输出1
+
+			count(0)    //    执行count0
+
+		console.log(1);
+
+----
+
+		console.log(1); //   输出1
+
+				// 这三行是count0
+				console.log(0);
+			
+					console.log('---------');
+				
+				console.log(0);
+		
+
+		console.log(1);  // 输出1
+
+</script>

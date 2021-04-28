@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>小球</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#ball{
+			width:100px;
+			height:100px;
+			background:black;
+			border-radius: 50%;
+			position:absolute;
+			left:0px;
+			top:0px;
+		}
+	</style>
+</head>
+<body>
+	<div id="ball"></div>
+</body>
+</html>
+<script type="text/javascript">
+	//	通过js来获取小球的位置
+	// console.log(ball.offsetLeft);
+	// console.log(ball.offsetTop);
+
+	var stepY = 1;
+	var stepX = 1;
+	//	每隔一段时间，让小球挪动一定的距离
+	function move(){
+		//获取小球现在的位置
+		var nowLeft = ball.offsetLeft;
+		var nowTop = ball.offsetTop;
+		//	判断小球是否移动到边缘
+		if(nowTop > 300 || nowTop < 0){
+			stepY = -stepY;
+			changeColor()
+		}
+		if(nowLeft > 1000 || nowLeft < 0){
+			stepX = -stepX;
+			changeColor()
+		}
+		//	重新给小球赋值位置属性，让小球移动
+		ball.style.left = nowLeft + stepX + 'px';
+		ball.style.top = nowTop + stepY + 'px';
+	}
+	// 计时器 直接使用回调函数
+	setInterval(move,5);
+	function changeColor(){
+		// 取随机数
+		// var r = Math.floor(Math.random()*10000000) % 256;
+		// var g = Math.floor(Math.random()*10000000) % 256;
+		// var b = Math.floor(Math.random()*10000000) % 256;
+		//	小球变色
+
+		ball.style.background = 'rgba('+ ran() +','+ran()+','+ran()+',1)'
+	}
+	function ran(){
+		return Math.floor(Math.random()*10000000) % 256;
+	}
+</script>

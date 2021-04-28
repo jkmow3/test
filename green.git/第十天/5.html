@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>请求</title>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>
+<script type="text/javascript">
+	var xhr = new XMLHttpRequest();
+	//	准备发送请求
+	xhr.open('GET','http://localhost:3000/');
+	//	发送请求
+	xhr.send();
+
+	//	上方，请求发送已经完成，下面开始接收服务器返回的数据
+	xhr.onreadystatechange = function(){
+		//	判断是否到达第4步
+		if(xhr.readyState == 4){
+			console.log(xhr.responseText);
+			// box.innerHTML = xhr.responseText
+		}
+	}
+</script>

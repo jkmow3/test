@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue语法</title>
+	<script src="js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+
+
+		<div v-for="(item,index) in list">
+			<h2>{{ item.name }}</h2>
+			<p>{{ item.content }}</p>
+			<img :src="item.imgurl">
+		</div>
+
+
+		<h1>{{ xiongtian }}</h1>
+		<input type="text" name="" v-model="zhangfan" />
+		<p>{{ zhangfan }}</p>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	
+	new Vue({
+		el:'#app',
+		data:{
+			xiongtian:'熊恬老师这会还没有起床',
+			zhangfan:'今天睡得不好，七点就醒了',
+			list:[{
+				name:'牛肉炒芹菜',
+				content:'牛肉炒芹菜可以有效的升高血压',
+				imgurl:'img/1.jpg'
+			},{
+				name:'猪肉炖粉条',
+				content:'每年我家里杀猪，都有兄弟过来要猪肥肉',
+				imgurl:'img/2.jpg'
+			},{
+				name:'鸭脖',
+				content:'现在的鸭脖越来越不好吃了',
+				imgurl:'img/3.gif'
+			}]
+		}
+	});
+
+</script>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>天气预报</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+	<!-- 引入vue,bootstrap,jquery -->
+	<script src="js/vue.js"></script>
+	<script src="js/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<style type="text/css">
+		.mr-3{
+			width:60px;
+			height:60px;
+		}
+		.media{
+			margin:20px 0px;
+			border-bottom:1px solid #cccccc;
+		}
+		.modal{
+			display:block;
+		}
+		.modal-body{
+			height:400px;
+			overflow:scroll;
+		}
+	</style>
+</head>
+<body>
+	<div class="container" id="app">
+		
+		<div @click="changeShow(item)" v-for="(item,index) in list"  class="media">
+			<img :src="item.author.avatar_url" class="mr-3" alt="...">
+			  <div class="media-body">
+			    <h5 class="mt-0">{{ item.title }}</h5>
+			  </div>
+		</div>
+		<div v-if="show" class="modal" tabindex="-1">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">{{ objModel.title }}</h5>
+		        <button  @click="changeShow" type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <p v-html="objModel.content"></p>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	/*
+		url:   https://cnodejs.org/api/v1/topics
+
+		method:  get
+
+		1. beforeMount利用生命周期函数，打开页面请求数据
+
+		2. v-for遍历数据
+
+		3. 点击每一条遍历的数据都能够打开模态框
+
+		4. 点击事件中，传入参数，把遍历出来的当前对象传入模态框函数，并且显示
+
+	*/
+	new Vue({
+		el:'#app',
+		data:{
+			list:[],
+			show:false,
+			objModel:{}
+		},
+		methods:{
+			changeShow:function(obj){
+				this.show = !this.show;
+				console.log(obj);
+				this.objModel = obj
+			}
+		},
+		/* 生命周期函数 */
+		beforeMount:function(){
+			var _this = this;
+			$.ajax({
+				url:'https://cnodejs.org/api/v1/topics',
+				type:'get',
+				success:function(res){
+					console.log(res);
+					_this.list = res.data
+				}
+			})
+		}
+	})
+</script>

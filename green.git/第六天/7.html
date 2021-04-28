@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>相对定位和绝对定位配合</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding:0px;
+			list-style: none;
+		}
+		div{
+			margin:0px auto;
+			width:100px;
+			height:40px;
+			font-size:20px;
+			text-align:center;
+			line-height: 40px;
+			background:gray;
+			color:white;
+			/*相对定位，提供参考点*/
+			position:relative;
+		}
+		ul{
+			background:green;
+			width:200px;
+			height:80px;
+			/*隐藏ul*/
+			display:none;
+			position:absolute;
+			top:40px;
+			left:-100px;
+		}
+		div:hover ul{
+			/*目前理解为显示*/
+			display:block;
+		}
+		li{
+			color:black;
+			width:100px;
+			height:40px;
+			float:left;
+		}
+	</style>
+</head>
+<body>
+	<div>游戏
+		<ul>
+			<li>手机游戏</li>
+			<li>电脑游戏</li>
+			<li>主机游戏</li>
+			<li>网页游戏</li>
+		</ul>
+	</div>
+	<img src="1.jpg">
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>天气预报</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+	<!-- 引入vue,bootstrap,jquery -->
+	<script src="js/vue.js"></script>
+	<script src="js/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+</head>
+<body>
+	<div class="container" id="app">
+	  <h1>天气预报<span class="badge badge-secondary">New</span></h1>
+	  <div class="input-group mb-3">
+		  <input type="text" class="form-control" placeholder="请输入你的城市" v-model="searchVal" >
+		  <div @click="searchWeather" class="input-group-append">
+		    <span class="input-group-text" id="basic-addon2">搜索</span>
+		  </div>
+		</div>
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">日期</th>
+		      <th scope="col">风向</th>
+		      <th scope="col">温度</th>
+		      <th scope="col">天气</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <th>{{ list.week }}</th>
+		      <td>{{ list.winddirect }}</td>
+		      <td>{{ list.temphigh }} -- {{ list.templow }}</td>
+		      <td>{{ list.weather }}</td>
+		    </tr>
+		  </tbody>
+		</table>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	new Vue({
+		el:'#app',
+		data:{
+			searchVal:'',
+			list:[]
+		},
+		methods:{
+			searchWeather:function(){
+				var _this = this;
+				$.ajax({
+					url:'http://localhost:3000/weather?keyword=' + _this.searchVal,
+					type:'get',
+					success:function(res){
+						var body = JSON.parse(res.body)
+						_this.list = body.result
+						console.log(_this.list);
+					
+					}
+				})
+			}
+		}
+	})
+</script>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>页面上的div跟着鼠标走</title>
+	<style type="text/css">
+		img{
+			width:100px;
+			height:100px;
+			position:absolute;
+		}
+	</style>
+</head>
+<body>
+	<img id="img" src="./img/5.jpg">
+</body>
+</html>
+<script type="text/javascript">
+	document.onmousemove = function(event){
+		console.log(event.clientX);
+		console.log(event.clientY);
+		img.style.left = event.clientX - 50 + 'px';
+		img.style.top = event.clientY - 50 + 'px';
+	}
+
+</script>

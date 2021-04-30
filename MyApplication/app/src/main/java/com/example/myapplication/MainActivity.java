@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
@@ -11,13 +12,8 @@ import android.hardware.display.DisplayManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,10 +26,11 @@ import com.example.myapplication.model.Mapsmodel;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    View view;
+    int initiaVilocity;
+    public View view;
     public View NextPanel;
-    Gamecontrol gamecontrol;
-    TextView Score;
+    public Gamecontrol gamecontrol;
+    public TextView Score;
 
     public TextView textMax;
     public Handler handler = new Handler(new Handler.Callback() {
@@ -61,6 +58,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent=this.getIntent();
+        initiaVilocity = intent.getIntExtra("v", 500);
         gamecontrol = new Gamecontrol(handler,this);
         InitView();
         initListener();
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         LinearLayout layoutinfo = (LinearLayout) findViewById((R.id.layoutInfo));
         layoutinfo.setPadding(Config.PADDing,Config.PADDing,Config.PADDing,Config.PADDing);
-
+        //预览界面的绘制
         NextPanel = new View(this){
             @Override
             protected void onDraw(Canvas canvas) {
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        gamecontrol.onClick(v.getId());
+        gamecontrol.onClick(v.getId(),initiaVilocity);
 
         view.invalidate();
         NextPanel.invalidate();

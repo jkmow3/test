@@ -1,11 +1,11 @@
 package com.example.myapplication.control;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Handler;
 import android.os.Message;
 import android.util.DisplayMetrics;
-import android.view.View;
 import android.view.WindowManager;
 
 import com.example.myapplication.Config;
@@ -15,17 +15,19 @@ import com.example.myapplication.model.Mapsmodel;
 import com.example.myapplication.model.Scoremodel;
 
 public class Gamecontrol {
-    public int score;
     public boolean isPause;
     public boolean isOver;
     Context context;
+    //定义方块模块
     public Boxsmodel boxsmodel;
+    //定义地图模块
     public Mapsmodel mapsmodel;
+    //定义分数模块
     public Scoremodel scoremodel;
     Handler handler;
     //自动下落线程
     public Thread downThread;
-
+    //初始化游戏控制器
     public Gamecontrol(Handler handler,Context context) {
         this.handler = handler;
         this.context = context;
@@ -34,25 +36,28 @@ public class Gamecontrol {
 
     public void InitDate() {
         int width = getScreenwidth(context);
+        //初始化游戏界面宽度
         Config.xWidth = width * 2 /3;
+        //初始化游戏界面高度
         Config.yHight =  Config.xWidth*2;
+        //初始化内间距
         Config.PADDing = width/Config.SP_PADDING;
         int boxSize = Config.xWidth/ Config.MAPSX;
         //初始化地图模块
         mapsmodel = new Mapsmodel(boxSize, Config.xWidth, Config.yHight);
         //初始化方块模块
         boxsmodel = new Boxsmodel(boxSize);
-
+       //初始化分数模块
         scoremodel =new Scoremodel(context);
 
     }
 
-    public void startGame() {
-
+    public void startGame(int INITIAVILOCITY) {
         //清楚地图
         mapsmodel.cleanMaps();
-
+       //初始化当前得分
         scoremodel.scoreNow = 0;
+        //下落线程
         if (downThread == null)
         {downThread = new Thread()
         {
@@ -62,7 +67,7 @@ public class Gamecontrol {
                 while (true)
                 {
                     try {
-                        sleep(500);
+                        sleep(INITIAVILOCITY);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -82,9 +87,9 @@ public class Gamecontrol {
             downThread.start();
 
         }
-        //
+        //游戏结束为否
         isOver = false;
-        //
+        //游戏开始为否
         isPause = false;
         boxsmodel.newBoxs();
 
@@ -92,7 +97,7 @@ public class Gamecontrol {
     }
 
     public boolean downmove() {
-        int lines = 0;
+        int lines;
         //移动成功
         if(boxsmodel.move(0,1,mapsmodel))
             return true;
@@ -102,12 +107,13 @@ public class Gamecontrol {
         //消行
          lines = mapsmodel.cleanLine();
         scoremodel.addscore(lines);
-
         scoremodel.updateScoreMax(isOver);
         //生成新方块
         boxsmodel.newBoxs();
         //游戏结束
         isOver = checkOver();
+        //存储每一次游戏结束的成绩
+        if(isOver&&scoremodel.scoreNow!=0) scoremodel.sqlUtils.putScore(scoremodel.scoreNow);
         return false;
     }
 
@@ -140,37 +146,43 @@ public class Gamecontrol {
         return outMetrics.widthPixels;
     }
     public void draw(Canvas canvas) {
-        //
+        //绘制地图
         mapsmodel.drawMaps(canvas);
         //绘制方块
         boxsmodel.drawBoxs(canvas);
-
+        //绘制线条
         mapsmodel.drawLines(canvas);
-
+        //绘制状态
         mapsmodel.drawState(canvas,isOver,isPause);
     }
 
-    public void onClick(int id) {
+    @SuppressLint("NonConstantResourceId")
+    public void onClick(int id, final int INITIAVILOCITY) {
         switch (id)
         {
             case  R.id.btnleft:
+                if (!isPause)
                 boxsmodel.move(-1,0,mapsmodel);
                 break;
             case  R.id.btnright:
+                if (!isPause)
                 boxsmodel.move(1,0,mapsmodel);
                 break;
             case  R.id.btnup:
+                if (!isPause)
                 boxsmodel.rotate(mapsmodel);
                 break;
             case  R.id.btndown:
+                if (!isPause&&!isOver)
                 while(true)
                 {  if(!downmove()) break;}
                 break;
             case R.id.btndown2:
+                if (!isPause&&!isOver)
                 downmove();
                 break;
             case  R.id.btnStart:
-                startGame();
+                startGame(INITIAVILOCITY);
                 break;
             case  R.id.btnPause:
                 setPause();
@@ -181,4 +193,5 @@ public class Gamecontrol {
     public void drawNext(Canvas canvas, int width) {
         boxsmodel.drawNext(canvas,width);
     }
+
 }

@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import com.example.myapplication.Config;
-
+//地图模型
 public class Mapsmodel {
 
     public boolean [][] maps;
@@ -28,10 +28,10 @@ public class Mapsmodel {
         mapPaint = new Paint();
         mapPaint.setColor(0x50000000);
         mapPaint.setAntiAlias(true);
-
+        //初始化辅助线画笔
         LinePaint = new Paint();
         LinePaint.setColor(0xff666666);
-
+        //初始化状态画笔
         statePaint =  new Paint();
         statePaint.setColor(0xffff0000);
         statePaint.setAntiAlias(true);
@@ -49,7 +49,7 @@ public class Mapsmodel {
                             y * boxSize + boxSize,
                             mapPaint);
     }
-
+    //绘制辅助线
     public void drawLines(Canvas canvas) {
         for (int x = 0;x<maps.length;x++)
         {

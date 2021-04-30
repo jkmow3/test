@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GameActivity2"
+    android:orientation="vertical"
+    android:weightSum="1">
+    <Button
+        android:layout_width="268dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="120dp"
+        android:layout_weight="0.16"
+        android:onClick="onClick_easy"
+        android:text="简单"
+        android:textColor="#000"
+        android:textSize="30dp"
+
+        app:backgroundTint="#69F0AE" />
+
+    <Button
+        android:layout_width="272dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.07"
+        android:onClick="onClick_usally"
+        android:text="普通"
+        android:textColor="#000"
+        android:textSize="30dp"
+        app:backgroundTint="#40C4FF" />
+
+    <Button
+        android:layout_width="271dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.11"
+        android:onClick="onClick_diffcult"
+        android:text="困难"
+        android:textColor="#000"
+        android:textSize="30dp"
+        app:backgroundTint="#FF5252" />
+</LinearLayout>

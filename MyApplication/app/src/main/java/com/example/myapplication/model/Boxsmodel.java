@@ -1,21 +1,19 @@
 package com.example.myapplication.model;
-
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
-
 import java.util.Random;
-
+//方块模型
 public class Boxsmodel {
     //方块画笔
     public Paint boxPaint;
-
+    //方块的点
     public Point[] boxs;
     //方块的类型
     public int boxType;
-
+    //方块大小
     int boxSize;
-
+    //预览方块大小
     public int boxsnextSize;
 
     final int TUPE = 7;
@@ -31,7 +29,7 @@ public class Boxsmodel {
         boxPaint.setColor(0xff000000);
         boxPaint.setAntiAlias(true);
     }
-
+    //绘制预览方块
     public void drawNext(Canvas canvas, int width) {
         if (boxsNext != null) {
             if (boxsnextSize == 0)
@@ -55,7 +53,6 @@ public class Boxsmodel {
 
         nexBoxsNext();
     }
-
     private void nexBoxsNext() {
         Random random = new Random();
         boxNextType = random.nextInt(TUPE);
@@ -89,7 +86,7 @@ public class Boxsmodel {
                 break;
         }
     }
-
+    //绘制方块
     public void drawBoxs(Canvas canvas) {
         if (boxs != null)
             for (int i = 0; i < boxs.length; i++) {
@@ -133,7 +130,8 @@ public class Boxsmodel {
             for (int i = 0; i < boxs.length; i++) {
                 int checkX = -boxs[i].y + boxs[0].y + boxs[0].x;
                 int checkY = boxs[i].x - boxs[0].x + boxs[0].y;
-                if (checkBoundary(checkX, checkY, mapsmodel)) return true;
+                if (checkBoundary(checkX, checkY, mapsmodel))
+                    return true;
             }
             for (int i = 0; i < boxs.length; i++) {
                 int checkX = -boxs[i].y + boxs[0].y + boxs[0].x;

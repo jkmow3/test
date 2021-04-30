@@ -9,5 +9,5 @@ public class Config {
     public static int xWidth;
     public static int yHight;
     public static int PADDing;
-    public static final int SP_PADDING = 40;
+    public static final int SP_PADDING = 30;
 }
